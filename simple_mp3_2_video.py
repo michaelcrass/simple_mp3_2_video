@@ -50,7 +50,17 @@ def create_video(image_path, audio_path, output_path):
     ], check=True)
 
 def main():
+
+    print("📹 Simple MP3 to video converter")
+    print("================================")
+
+    print("📂 Look in Parent folder to search for images and MP3 files [0] \nor just the same folder? [1]")
+    choice = input("[0/1]: ")
+
     folders = [".", ".."]
+    if choice == "1":
+        folders = ["."]
+
 
     print("Choose an image file:")
     images = list_files_by_ext(folders, (".jpg", ".jpeg", ".png"))
@@ -60,14 +70,24 @@ def main():
     mp3s = list_files_by_ext(folders, (".mp3",))
     mp3_file1 = choose_file(mp3s, "Select first MP3 [1-{}]: ".format(len(mp3s)))
 
-    print("\nChoose second MP3 file:")
-    mp3_file2 = choose_file(mp3s, "Select second MP3 [1-{}]: ".format(len(mp3s)))
-
-    combined_audio = "combined_audio.mp3"
     output_video = "output_video.mp4"
+    
+    
+    print("Just one MP3 file? [0] \nor two? [1]")
+    choice = input("[0/1]: ")
+    
+    
+    if choice == "1":
+        # 2 MP3's
+        print("\nChoose second MP3 file:")
+        mp3_file2 = choose_file(mp3s, "Select second MP3 [1-{}]: ".format(len(mp3s)))
 
-    print("\n🔄 Concatenating audio...")
-    concat_mp3s(mp3_file1, mp3_file2, combined_audio)
+        combined_audio = "combined_audio.mp3"
+
+        print("\n🔄 Concatenating audio...")
+        concat_mp3s(mp3_file1, mp3_file2, combined_audio)
+    else:
+        combined_audio = mp3_file1
 
     print("🎞️  Creating video...")
     create_video(img_file, combined_audio, output_video)
@@ -77,4 +97,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#dd
