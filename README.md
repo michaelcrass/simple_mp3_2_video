@@ -1,3 +1,3 @@
 This script creates a mp4-video. 
 
-Input: 1 background image, 2 mp3-files
+Input: 1 background image, up to 2 mp3-files
