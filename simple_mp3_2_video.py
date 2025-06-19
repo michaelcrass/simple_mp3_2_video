@@ -93,7 +93,7 @@ def main():
     create_video(img_file, combined_audio, output_video)
 
     print(f"\n✅ Done! Saved to: {output_video}")
-    os.remove(combined_audio)
+    # os.remove(combined_audio)
 
 if __name__ == "__main__":
     main()
